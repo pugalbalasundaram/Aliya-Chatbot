@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<style>
+/* ===== GENERAL STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f3f4f6;
+}
+main.dashboard {
+  padding: 100px 2rem 2rem 2rem;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 2rem 0 1rem 0;
+  color: #4a4a4a;
+}
+
+/* ===== HEADER (Same as Chat Page) ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.logo {
+  font-size: 1.7rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.logo span {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff7eb3, #8e44ad, #6dd5ed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 5s infinite linear;
+}
+@keyframes gradientText {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1.6rem;
+  font-size: 1.1rem;
+  position: relative;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  left: 0;
+  bottom: -4px;
+  transition: 0.3s;
+}
+nav a:hover::after {
+  width: 100%;
+}
+.btn-purple {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btn-purple:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== DASHBOARD CONTENT ===== */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+.stats div {
+  flex: 1 1 180px;
+  background: #dbeafe;
+  padding: 1.25rem;
+  margin: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  border-radius: 12px;
+  box-shadow: 0px 4px 18px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stats div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 25px rgba(0,0,0,0.18);
+}
+.form-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.form-card {
+  flex: 1 1 30%;
+  max-width: 30%;
+  background: #dbeafe;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.07);
+  transition: all 0.25s ease;
+  position: relative;
+  margin: 1rem 0.5rem;
+}
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 12px 25px rgba(0,0,0,0.12);
+  background: #c7d2fe;
+}
+.form-card strong {
+  font-size: 1.1rem;
+  color: #333;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.form-card a {
+  display: inline-block;
+  font-weight: bold;
+  color: #007BFF;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+.form-card a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+#viewMoreBtn {
+  display: block;
+  margin: 1rem auto;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #2575fc;
+  color: #fff;
+}
+#viewMoreBtn:hover {
+  background-color: #1d5fd1;
+}
+</style>
+</head>
+<body>
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="logo">
+    <img src="/static/robot-one.svg" alt="Logo" style="height: 32px; vertical-align: middle; margin-right: 8px;">
+    <span>FormGen Pro</span>
+  </div>
+  <nav>
+    <a href="/dashboard"><button class="btn-purple">Dashboard</button></a>
+    <a href="/login"><button class="btn-purple">Sign In</button></a>
+    <a href="/chat"><button class="btn-purple">Forms</button></a>
+    <a href="/reset"><button class="btn-purple">Reset</button></a>
+    
+  </nav>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="dashboard">
+  <h2>Dashboard</h2>
+  <p>Welcome back, <strong>{{ user }}</strong>!</p>
+
+  <div class="stats">
+    <div>Total Forms: {{ form_count }}</div>
+    <div>Total Responses: {{ response_count }}</div>
+    <div>Active Forms: {{ active_count }}</div>
+  </div>
+
+  <h3>Your Forms</h3>
+  <div class="form-list" id="formList">
+    {% for form in forms %}
+      <div class="form-card">
+        <strong>{{ form.prompt }}</strong><br>
+        Theme: {{ form.theme }}<br>
+        <a href="{{ url_for('serve_form', filename=form.generated_file) }}" target="_blank">View</a>
+      </div>
+    {% endfor %}
+  </div>
+  <button id="viewMoreBtn">View More</button>
+
+  <h3>Charts</h3>
+  <div>
+    <p>Forms Created Per Day</p>
+    <canvas id="formChart" width="400" height="200"></canvas>
+    <p>Forms Submitted Per Day</p>
+    <canvas id="submissionChart" width="400" height="200"></canvas>
+  </div>
+  
+</main>
+
+<!-- ================= JS LOGIC ================= -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx1 = document.getElementById('formChart').getContext('2d');
+  new Chart(ctx1, {
+      type: 'bar',
+      data: {
+          labels: {{ labels|tojson }},
+          datasets: [{
+              label: 'Forms Created Per Day',
+              data: {{ data}},
+              backgroundColor: 'rgba(54, 162, 235, 0.6)',
+              borderRadius: 5,
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          plugins: {
+              legend: { display: false },
+              title: {
+                  display: true,
+                  text: 'Form Creation Activity'
+              }
+          },
+          scales: {
+              y: {
+                  beginAtZero: true,
+                  stepSize: 1
+              }
+          }
+      }
+  });
+
+  const ctx = document.getElementById('submissionChart').getContext('2d');
+  new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: {{ labels|tojson }},
+          datasets: [{
+              S_label: 'Forms Created Per Day',
+              S_data: {{ S_data}},
+              backgroundColor: 'rgba(54, 162, 235, 0.6)',
+              borderRadius: 5,
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          plugins: {
+              legend: { display: false },
+              title: {
+                  display: true,
+                  text: 'Form Creation Activity'
+              }
+          },
+          scales: {
+              y: {
+                  beginAtZero: true,
+                  stepSize: 1
+              }
+          }
+      }
+  });
+  
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const formList = document.querySelector('#formList');
+    const forms = Array.from(document.querySelectorAll('.form-card'));
+    const viewMoreBtn = document.querySelector('#viewMoreBtn');
+    const visibleCount = 3;
+
+    function updateList() {
+      forms.forEach((card, index) => {
+        card.style.display = index < visibleCount ? 'block' : 'none';
+      });
+      viewMoreBtn.textContent = forms.length > visibleCount && forms[visibleCount]?.style.display === 'none'
+        ? 'View More'
+        : 'View Less';
+    }
+
+    viewMoreBtn.addEventListener('click', function() {
+      const isExpanded = forms[visibleCount]?.style.display === 'none';
+      forms.forEach((card, index) => {
+        if (index >= visibleCount) {
+          card.style.display = isExpanded ? 'block' : 'none';
+        }
+      });
+      viewMoreBtn.textContent = isExpanded ? 'View Less' : 'View More';
+    });
+    if (forms.length <= visibleCount) {
+      viewMoreBtn.style.display = 'none';
+    } else {
+      updateList();
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #eef2f7, #d7e0ec);
+      padding: 2rem;
+    }
+    .form-container {
+      background: white;
+      padding: 3rem;
+      max-width: 720px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-left: 6px solid #2f4f4f;
+      animation: fadeIn 0.6s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #2c3e50;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    label {
+      display: block;
+      margin: 1rem 0 0.25rem;
+      font-weight: 600;
+      color: #34495e;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #bdc3c7;
+      background-color: #f9f9f9;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #2980b9;
+      background-color: #ffffff;
+      outline: none;
+      box-shadow: 0 0 4px rgba(41, 128, 185, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="form_id" value="21ae5072">
+            <h2>NASA Join Form</h2>
+
+<p>Please fill out this form to join NASA.</p>
+
+
+  <!-- hidden input for form identification -->
+  <input type="hidden" name="form_id" value="21ae5072">
+
+  <!-- section for personal information -->
+  <div class="section">
+    <label for="name">Name</label>
+    <input type="text" required id="name" name="name" placeholder="Your full name" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" required id="email" name="email" placeholder="Your email address" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+  </div>
+
+  <!-- section for education and experience -->
+  <div class="section">
+    <label for="education">Highest Degree</label>
+    <select required id="education" name="education" required>
+      <option value="" disabled selected>Select your highest degree</option>
+      <option value="bachelor's">Bachelor's</option>
+      <option value="master's">Master's</option>
+      <option value="phd">PhD</option>
+    </select>
+
+    <label for="experience">Years of Experience</label>
+    <input type="number" required id="experience" name="experience" placeholder="Number of years of experience" required>
+  </div>
+
+  <!-- section for skills -->
+  <div class="section">
+    <h3>Skills</h3>
+    <label for="skill1">Skill 1</label>
+    <input type="text" required id="skill1" name="skill1" placeholder="Skill 1" required>
+
+    <label for="skill2">Skill 2</label>
+    <input type="text" required id="skill2" name="skill2" placeholder="Skill 2" required>
+
+    <label for="skill3">Skill 3</label>
+    <input type="text" required id="skill3" name="skill3" placeholder="Skill 3" required>
+
+    <!-- Add more skills here as needed -->
+  </div>
+
+  <!-- section for additional information -->
+  <div class="section">
+    <label for="additional_info">Additional Information</label>
+    <textarea required id="additional_info" name="additional_info" placeholder="Anything else you'd like to share"></textarea>
+  </div>
+
+  <!-- submit button -->
+            <div class="text-center mt-6">
+                <button type="submit" class="bg-gradient-to-r from-pink-500 to-orange-400 hover:from-pink-600 hover:to-orange-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    🚀 Submit Form
+                </button>
+            </div>
+        </form>
+        
+  </div>
+  
+    <script>
+      document.querySelectorAll("input, textarea, select").forEach((el, i, arr) => {
+        el.addEventListener("keydown", function(e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            const next = arr[i + 1];
+            if (next) next.focus();
+          }
+        });
+      });
+    </script>
+    
+</body>
+</html>
